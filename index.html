@@ -15,40 +15,89 @@
       gtag('config', 'G-W81G5SCY8X');
     </script>
 
-     <!-- ✅ Meta Description for SEO -->
-    <meta name="description" content="Track your live speed in km/h with Speed Tracker. Get accurate speed data in real-time using GPS.">
+     <!-- ✅ Optimized Title for SEO -->
+    <title>SpeedTracker - Fast & Accurate Internet Speed Test</title>
 
-    <!-- ✅ Open Graph (OG) Tags for Social Media -->
-    <meta property="og:title" content="Speed Tracker - Live Speed Test" />
-    <meta property="og:description" content="Check your current speed in km/h using GPS tracking. Real-time speed test with accurate data." />
+    <!-- ✅ Meta Description for Better Search Ranking -->
+    <meta name="description" content="Test your internet speed with SpeedTracker. Get accurate results in Mbps, latency, and network stability.">
+    
+   <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ✅ Optimized Title for SEO -->
+    <title>SpeedTracker - Fast & Accurate Internet Speed Test</title>
+
+    <!-- ✅ Meta Description for Better Search Ranking -->
+    <meta name="description" content="Test your internet speed with SpeedTracker. Get accurate results in Mbps, latency, and network stability.">
+
+    <!-- ✅ Keywords (Google ignores it, but useful for some search engines) -->
+    <meta name="keywords" content="internet speed test, speed tracker, check internet speed, fast internet test, online speed test">
+
+    <!-- ✅ Open Graph Tags for Social Media Sharing -->
+    <meta property="og:title" content="SpeedTracker - Fast & Accurate Internet Speed Test" />
+    <meta property="og:description" content="Test your internet speed with SpeedTracker. Get real-time results in Mbps, latency, and stability." />
     <meta property="og:image" content="https://yourwebsite.com/logo.png" />
     <meta property="og:url" content="https://yourwebsite.com/" />
 
     <!-- ✅ Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Speed Tracker - Live Speed Test">
-    <meta name="twitter:description" content="Get real-time speed tracking data using GPS. Easy and accurate live speed test.">
+    <meta name="twitter:title" content="SpeedTracker - Internet Speed Test">
+    <meta name="twitter:description" content="Test your internet speed with SpeedTracker. Get real-time results in Mbps, latency, and stability.">
     <meta name="twitter:image" content="https://yourwebsite.com/logo.png">
 
-    <!-- ✅ Structured Data for Google Search -->
+    <!-- ✅ Structured Data for Google -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "Speed Tracker - Live Speed Test",
-      "description": "Check your current speed in km/h using GPS tracking. Real-time speed test with accurate data.",
-      "url": "https://yourwebsite.com/"
+      "@type": "WebSite",
+      "name": "SpeedTracker",
+      "url": "https://yourwebsite.com",
+      "description": "Test your internet speed with SpeedTracker. Get accurate results in Mbps, latency, and network stability."
     }
     </script>
 
-    
     <style>
         body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
         #speed { font-size: 30px; font-weight: bold; }
     </style>
 </head>
 <body>
-    <h1>Live Speed Tracker</h1>
+    <!-- ✅ Proper Use of Heading Tags -->
+    <h1>SpeedTracker - Live Internet Speed Test</h1>
+    <h2>Check Your Download & Upload Speed Instantly</h2>
+
+    <p>Current Speed: <span id="speed">0</span> km/h</p>
+    <button onclick="getSpeed()">Start Tracking</button>
+
+    <script>
+        function getSpeed() {
+            if (navigator.geolocation) {
+                navigator.geolocation.watchPosition(
+                    function(position) {
+                        let speed = position.coords.speed || 0;
+                        document.getElementById("speed").innerText = (speed * 3.6).toFixed(2); // Convert m/s to km/h
+                    },
+                    function(error) {
+                        alert("Error: " + error.message);
+                    },
+                    { enableHighAccuracy: true }
+                );
+            } else {
+                alert("Geolocation is not supported by your browser.");
+            }
+        }
+    </script>
+</body>
+</html>
+
+</head>
+<body>
+    <h1>SpeedTracker - Live Internet Speed Test</h1>
+    <h2>Check Your Download & Upload Speed Instantly</h2>
+    
     <p>Current Speed: <span id="speed">0</span> km/h</p>
     <button onclick="getSpeed()">Start Tracking</button>
 
