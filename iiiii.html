@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet Speed Test</title>
+</head>
+<body>
+    <h2>Internet Speed Test (Powered by M-Lab)</h2>
+    <button onclick="startSpeedTest()">Start Test</button>
+    <p id="downloadSpeed">Download Speed: -- Mbps</p>
+    <p id="uploadSpeed">Upload Speed: -- Mbps</p>
+    <p id="latency">Latency (Ping): -- ms</p>
+
+    <script>
+        async function startSpeedTest() {
+            const response = await fetch("https://locate.measurementlab.net/ndt/v7");
+            const data = await response.json();
+            const server = data.servers[0].machine;
+
+            const test = new WebSocket(`wss://${server}/ndt/v7/download`);
+
+            test.onmessage = (event) => {
+                const result = JSON.parse(event.data);
+                if (result.Data && result.Data.Download.MeanThroughputMbps) {
+                    document.getElementById("downloadSpeed").innerText = `Download Speed: ${result.Data.Download.MeanThroughputMbps.toFixed(2)} Mbps`;
+                }
+                if (result.Data && result.Data.Upload.MeanThroughputMbps) {
+                    document.getElementById("uploadSpeed").innerText = `Upload Speed: ${result.Data.Upload.MeanThroughputMbps.toFixed(2)} Mbps`;
+                }
+                if (result.Data && result.Data.MinRTT) {
+                    document.getElementById("latency").innerText = `Latency (Ping): ${result.Data.MinRTT.toFixed(2)} ms`;
+                }
+            };
+        }
+    </script>
+</body>
+</html>
