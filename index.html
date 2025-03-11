@@ -3,29 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Speed Tracker</title>
-    
-     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W81G5SCY8X"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-W81G5SCY8X');
-    </script>
-
-     <!-- ✅ Optimized Title for SEO -->
-    <title>SpeedTracker - Fast & Accurate Internet Speed Test</title>
-
-    <!-- ✅ Meta Description for Better Search Ranking -->
-    <meta name="description" content="Test your internet speed with SpeedTracker. Get accurate results in Mbps, latency, and network stability.">
-    
-   <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- ✅ Optimized Title for SEO -->
     <title>SpeedTracker - Fast & Accurate Internet Speed Test</title>
@@ -69,35 +46,6 @@
     <h1>SpeedTracker - Live Internet Speed Test</h1>
     <h2>Check Your Download & Upload Speed Instantly</h2>
 
-    <p>Current Speed: <span id="speed">0</span> km/h</p>
-    <button onclick="getSpeed()">Start Tracking</button>
-
-    <script>
-        function getSpeed() {
-            if (navigator.geolocation) {
-                navigator.geolocation.watchPosition(
-                    function(position) {
-                        let speed = position.coords.speed || 0;
-                        document.getElementById("speed").innerText = (speed * 3.6).toFixed(2); // Convert m/s to km/h
-                    },
-                    function(error) {
-                        alert("Error: " + error.message);
-                    },
-                    { enableHighAccuracy: true }
-                );
-            } else {
-                alert("Geolocation is not supported by your browser.");
-            }
-        }
-    </script>
-</body>
-</html>
-
-</head>
-<body>
-    <h1>SpeedTracker - Live Internet Speed Test</h1>
-    <h2>Check Your Download & Upload Speed Instantly</h2>
-    
     <p>Current Speed: <span id="speed">0</span> km/h</p>
     <button onclick="getSpeed()">Start Tracking</button>
 
