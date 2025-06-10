@@ -1,0 +1,95 @@
+body {
+  background: #0b0b0b;
+  color: white;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.speed {
+  position: relative;
+  width: 400px;
+  height: 400px;
+}
+
+.speed__wheel {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 10px solid gray;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 0% 90%);
+  position: relative;
+  background: #0b0b0b;
+  overflow: hidden;
+}
+
+.highlight-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 10px solid transparent;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.speed__tick {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.tick {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  height: 180px;
+  width: 2px;
+  background: linear-gradient(to top, transparent 90%, red 90%);
+  transform-origin: bottom center;
+}
+
+.tick::before {
+  content: attr(value);
+  position: absolute;
+  color: white;
+  top: 26px;
+  left: -10px;
+  transform: translateX(0%);
+}
+
+.pointer {
+  position: absolute;
+  background: rgb(152, 152, 129);
+  height: 200px;
+  width: 20px;
+  left: 188px;
+  top: 60px;
+  clip-path: polygon(9px 10px, 11px 10px, 20px 150px, 10px 190px, 0 150px);
+  transform-origin: 9px 130px;
+  transition: transform 0.3s ease-in-out;
+}
+
+#controls {
+  margin-top: 30px;
+}
+
+button {
+  margin: 10px;
+  padding: 10px 20px;
+  background: deepskyblue;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#result {
+  font-size: 1.5rem;
+  margin-top: 20px;
+}
