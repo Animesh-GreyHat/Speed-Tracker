@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet" href="style.css" />
     <link rel="icon" type="image/png" href="/favicon.png">
     
     <!-- ✅ Optimized Title for SEO -->
@@ -54,30 +55,23 @@
     </style>
 </head>
 <body>
-    <!-- ✅ Proper Use of Heading Tags -->
-    <h1>SpeedTracker - Live Internet Speed Test</h1>
-    <h2>Check Your Download & Upload Speed Instantly</h2>
 
-    <p>Current Speed: <span id="speed">0</span> km/h</p>
-    <button onclick="getSpeed()" aria-label="Start Internet Speed Tracking">Start Tracking</button>
+<div class="speed">
+  <div class="speed__wheel">
+    <div class="speed__tick" id="ticksContainer"></div>
+    <div class="pointer" id="pointer"></div>
+    <div class="highlight-ring" id="highlightRing"></div>
+  </div>
+</div>
 
-    <script>
-        function getSpeed() {
-            if (navigator.geolocation) {
-                navigator.geolocation.watchPosition(
-                    function(position) {
-                        let speed = position.coords.speed || 0;
-                        document.getElementById("speed").innerText = (speed * 3.6).toFixed(2); // Convert m/s to km/h
-                    },
-                    function(error) {
-                        alert("Error: " + error.message);
-                    },
-                    { enableHighAccuracy: true }
-                );
-            } else {
-                alert("Geolocation is not supported by your browser.");
-            }
-        }
-    </script>
+<div id="result">Speed: 0 Mbps</div>
+
+<div id="controls">
+  <button onclick="startTest()">Start Speed Test</button>
+  <button onclick="window.print()">Print Result</button>
+  <button onclick="downloadResult()">Download Result</button>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
