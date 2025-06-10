@@ -7,6 +7,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
+  margin: 0;
 }
 
 .speed {
@@ -28,13 +29,32 @@ body {
 
 .highlight-ring {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 380px;
+  height: 380px;
   border-radius: 50%;
   border: 10px solid transparent;
   top: 0;
   left: 0;
   pointer-events: none;
+}
+
+@keyframes pulseRing {
+  0% {
+    border-color: rgba(0, 191, 255, 0.2);
+    box-shadow: 0 0 0px rgba(0, 191, 255, 0.2);
+  }
+  50% {
+    border-color: rgba(0, 191, 255, 0.8);
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.8);
+  }
+  100% {
+    border-color: rgba(0, 191, 255, 0.2);
+    box-shadow: 0 0 0px rgba(0, 191, 255, 0.2);
+  }
+}
+
+.pulsing-ring {
+  animation: pulseRing 2s infinite;
 }
 
 .speed__tick {
@@ -60,6 +80,7 @@ body {
   top: 26px;
   left: -10px;
   transform: translateX(0%);
+  user-select: none;
 }
 
 .pointer {
@@ -71,7 +92,8 @@ body {
   top: 60px;
   clip-path: polygon(9px 10px, 11px 10px, 20px 150px, 10px 190px, 0 150px);
   transform-origin: 9px 130px;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.1s ease-in-out;
+  user-select: none;
 }
 
 #controls {
@@ -87,9 +109,11 @@ button {
   font-size: 1rem;
   cursor: pointer;
   border-radius: 5px;
+  user-select: none;
 }
 
 #result {
   font-size: 1.5rem;
   margin-top: 20px;
+  user-select: none;
 }
