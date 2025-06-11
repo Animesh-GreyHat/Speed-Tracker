@@ -78,7 +78,7 @@ body {
   position: absolute;
   color: white;
   top: 26px;
-  left: -10px;
+  left: -4px;
   transform: translateX(0%);
   user-select: none;
 }
