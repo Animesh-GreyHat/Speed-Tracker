@@ -65,7 +65,7 @@ body {
 
 .tick {
   position: absolute;
-  top: 10px;
+  top: 5%;
   left: 50%;
   height: 180px;
   width: 2px;
@@ -117,3 +117,4 @@ button {
   margin-top: 20px;
   user-select: none;
 }
+
