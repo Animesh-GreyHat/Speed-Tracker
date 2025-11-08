@@ -22,7 +22,7 @@
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/speedtracker.git
+git clone https://github.com/Animesh-GreyHat/speedtracker.git
 ```
 
 2. Navigate into the project folder:
