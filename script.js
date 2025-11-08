@@ -56,14 +56,16 @@ function animateNeedle(fromSpeed, toSpeed, duration) {
   animationFrameId = requestAnimationFrame(animate);
 }
 
-async function measureSpeedLive(updateCallback) {
+async function measureSpeedParallel(updateCallback) {
   const url = "https://speedtest-backend-ocqz.onrender.com/download/5MB.bin";
-  let totalBits = 0;
   const alpha = 0.15;
   let smoothedSpeed = 0;
   const startTime = performance.now();
 
-  for (let i = 0; i < 2; i++) {
+  // Track loaded bytes for all streams
+  const loadedBytes = [0, 0, 0, 0, 0];
+
+  const downloadFile = async (index) => {
     const response = await fetch(url + "?_=" + Date.now());
     const reader = response.body.getReader();
     let loaded = 0;
@@ -72,20 +74,35 @@ async function measureSpeedLive(updateCallback) {
       const { done, value } = await reader.read();
       if (done) break;
       loaded += value.length;
+      loadedBytes[index] = loaded;
+
+    
+      const totalLoaded = loadedBytes.reduce((acc, val) => acc + val, 0);
       const elapsed = (performance.now() - startTime) / 1000;
-      const speed = (loaded / 1024 / 1024 * 8) / elapsed;
+      const speed = (totalLoaded / 1024 / 1024 * 8) / elapsed; // Mbps
       smoothedSpeed = smoothedSpeed * (1 - alpha) + speed * alpha;
       updateCallback(smoothedSpeed);
     }
 
-    totalBits += loaded * 8;
-  }
+    return loaded * 8; 
+  };
 
-  const endTime = performance.now();
-  const durationSeconds = (endTime - startTime) / 1000;
+  // Run 5 downloads in parallel
+  const results = await Promise.all([
+    downloadFile(0),
+    downloadFile(1),
+    downloadFile(2),
+    downloadFile(3),
+    downloadFile(4),
+  ]);
+
+  const totalBits = results.reduce((acc, bits) => acc + bits, 0);
+  const durationSeconds = (performance.now() - startTime) / 1000;
   const finalMbps = totalBits / 1024 / 1024 / durationSeconds;
+
   return finalMbps;
 }
+
 
 async function startTest() {
   resultDisplay.textContent = "Testing...";
@@ -93,7 +110,7 @@ async function startTest() {
   currentNeedleSpeed = 0;
   updateNeedle(0);
 
-  const finalSpeed = await measureSpeedLive((currentSpeed) => {
+  const finalSpeed = await measureSpeedParallel((currentSpeed) => {
     animateNeedle(currentNeedleSpeed, currentSpeed, 200);
     resultDisplay.textContent = `Testing... ${currentSpeed.toFixed(1)} Mbps`;
     currentNeedleSpeed = currentSpeed;
@@ -103,6 +120,6 @@ async function startTest() {
   resultDisplay.textContent = `Final Download Speed: ${finalSpeed.toFixed(2)} Mbps`;
 
   highlightRing.classList.remove("pulsing-ring");
-  highlightRing.style.borderColor = "#7209b7";
+  // highlightRing.style.borderColor = "#7209b7";
+  
 }
-
