@@ -103,5 +103,6 @@ async function startTest() {
   resultDisplay.textContent = `Final Download Speed: ${finalSpeed.toFixed(2)} Mbps`;
 
   highlightRing.classList.remove("pulsing-ring");
-  highlightRing.style.borderColor = "lime";
+  highlightRing.style.borderColor = "#7209b7";
 }
+
