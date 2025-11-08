@@ -11,7 +11,7 @@ html, body {
 }
 
 body {
-  background-image: url('background.JPG');
+  background-image: url('background.PNG');
   background-size: cover;     
   background-position: center;
   background-repeat: no-repeat;
@@ -173,5 +173,6 @@ button:hover {
 .privacy:hover {
   background-color: rgba(255,255,255,0.25);
 }
+
 
 
